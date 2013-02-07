@@ -6,6 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
     <meta name="description" content="Labeled Tab-separated Values (LTSV) : " />
 
+<!-- facebook open graph tags -->
+<meta property="og:title" content="Labeled Tab-separated Values" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://lstv.org/" />
+<meta property="og:image" content="" />
+<meta property="og:site_name" content="Labeled Tab-separated Values" />
+<meta property="fb:admins" content="533213899" />
+<!-- END facebook open graph tags -->
+
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
     <title>Labeled Tab-separated Values (LTSV)</title>
@@ -13,10 +22,21 @@
 
   <body>
 
+<!-- for Facebook Like button -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=6933260618";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- END for Facebook Like button -->
+
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <h1 id="project_title">Labeled Tab-separated Values (LTSV)</h1>
+          <h1 id="project_title">Labeled Tab-separated Values</h1>
           <h2 id="project_tagline"></h2>
         </header>
     </div>
@@ -24,9 +44,8 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>Labeled Tab-separated Values (LTSV)</h1>
 
-<p>LTSV format is a variant of Tab-separated Values (TSV). Records in a
+<p>Labeled Tab-separated Values (LTSV) format is a variant of Tab-separated Values (TSV). Records in a
 LTSV file represented as a single line. Each field is separated by TAB
 and has a label and a value. The label and the value have been
 separated by ':'.</p>
@@ -58,9 +77,8 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
 
 <h3>fluentd</h3>
 
-<p><a href="http://fluentd.org/">http://fluentd.org/</a></p>
-
-<p>The configuration of in_tail for a LTSV file is like this:</p>
+<p>fluentd (<a href="http://fluentd.org/">http://fluentd.org/</a>) supports to parse a LTSV file with in_tail plugin.
+The configuration is like this:</p>
 
 <pre><code>&lt;source&gt;
   type tail
@@ -97,8 +115,18 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Labeled Tab-separated Values (LTSV) maintained by <a href="https://github.com/stanaka">stanaka</a> shinji.tanaka+ltsv@gmail.com</p>
+        <p class="copyright">maintained by Shinji Tanaka &lt;shinji.tanaka+ltsv@gmail.com&gt;</p>
 
+<!-- for tweet button  -->
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ltsv.org/" data-hashtags="ltsv">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!-- END for tweet button  -->
+
+<!-- for facebook like button  -->
+<div class="fb-like" data-href="http://lstv.org/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+<!-- END for facebook like button  -->
+
+<!-- for +1 button  -->
 <!-- Place this tag where you want the +1 button to render. -->
 <div class="g-plusone" data-href="http://ltsv.org"></div>
 
@@ -110,9 +138,7 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
-
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ltsv.org/" data-hashtags="ltsv">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<!-- END for +1 button  -->
 
       </footer>
     </div>

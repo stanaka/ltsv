@@ -59,7 +59,7 @@ body {
   box-sizing: border-box;
   color:#373737;
   background: #212121;
-  font-size: 16px;
+  font-size: 15px;
   font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -74,22 +74,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 700;
 }
 
 h2 {
   padding-bottom: 10px;
-  font-size: 32px;
+  font-size: 28px;
   background: url('../images/bg_hr.png') repeat-x bottom;
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 22px;
 }
 
 h4 {
-  font-size: 21px;
+  font-size: 20px;
 }
 
 h5 {
@@ -164,14 +164,11 @@ pre, code {
   background-color: #fff;
 
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 14px;
+  font-size: 12px;
 
   border-radius: 2px;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-
-
-
 }
 
 pre {
@@ -302,7 +299,7 @@ Full-Width Styles
 }
 
 #header_wrap .inner {
-  padding: 50px 10px 30px 10px;
+  padding: 40px 10px 10px 10px;
 }
 
 #project_title {
@@ -321,45 +318,6 @@ Full-Width Styles
   text-shadow: #111 0px 0px 10px;
 }
 
-#downloads {
-  position: absolute;
-  width: 210px;
-  z-index: 10;
-  bottom: -40px;
-  right: 0;
-  height: 70px;
-  background: url('../images/icon_download.png') no-repeat 0% 90%;
-}
-
-.zip_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height:70px;
-  text-indent: -5000px;
-  overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom left;
-}
-
-.tar_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height:70px;
-  text-indent: -5000px;
-  overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom right;
-  margin-left: 10px;
-}
-
-.zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top left;
-}
-
-.tar_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top right;
-}
-
 #main_content_wrap {
   background: #f2f2f2;
   border-top: 1px solid #111;
@@ -367,7 +325,7 @@ Full-Width Styles
 }
 
 #main_content {
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 #footer_wrap {
