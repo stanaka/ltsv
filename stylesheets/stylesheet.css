@@ -394,16 +394,20 @@ Social Buttons
 
 div.tweet {
   float:left;
+  width: 100px;
 }
 
 div.fb-like {
   float:left;
+  width: 100px;
 }
 
 div.plusone {
   float:left;
+  width: 100px;
 }
 
 div.hatenabookmark {
   float:left;
+  width: 100px;
 }
