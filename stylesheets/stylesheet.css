@@ -387,3 +387,23 @@ Small Device Styles
   }
 
 }
+
+/*******************************************************************************
+Social Buttons
+*******************************************************************************/
+
+div.tweet {
+  float:left;
+}
+
+div.fb-like {
+  float:left;
+}
+
+div.plusone {
+  float:left;
+}
+
+div.hatenabookmark {
+  float:left;
+}
