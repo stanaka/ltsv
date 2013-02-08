@@ -45,6 +45,8 @@
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
 
+<h2>Description</h2>
+
 <p>Labeled Tab-separated Values (LTSV) format is a variant of
 Tab-separated Values (TSV). Each record in a LTSV file is represented as
 a single line. Each field is separated by TAB and has a label and a
@@ -54,7 +56,7 @@ value. The label and the value have been separated by ':'.</p>
 
 <p>The log line of LTSV is like this:</p>
 
-<pre><code>time:28/Feb/2013:12:00:00 +0900 host:192.168.0.1    req:GET /list HTTP/1.1  status:200
+<pre><code>time:28/Feb/2013:12:00:00 +0900&lt;TAB&gt;host:192.168.0.1&lt;TAB&gt;req:GET /list HTTP/1.1&lt;TAB&gt;status:200
 </code></pre>
 
 <h2>Definition</h2>
@@ -72,6 +74,118 @@ NL = [%x0D] %x0A
 lbyte = %x30-39 / %x41-5A / %x61-7A / "_" / "." / "-" ;; [0-9A-Za-z_.-]
 fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
 </code></pre>
+
+<h2>Recommendations for labeling</h2>
+
+<p>The specification of LTSV is simple and primitive. Nevertheless label standardization may help to improve reusability of some implementations for processing or analysis.</p>
+
+<h3>Labels for Web server's Log</h3>
+
+<p>Here are label recommendations, their description, Format string for apache and one for nginx.</p>
+
+<table>
+  <tr>
+    <th>Recommended Label</th>
+    <th>Description</th>
+    <th>Format String of Apache mod_log_config</th>
+    <th>Format String of nginx log format</th>
+  </tr>
+  <tr>
+    <td>time</td>
+    <td>Time the request was received</td>
+    <td>%t</td>
+    <td>$time_local</td>
+  </tr>
+  <tr>
+    <td>host</td>
+    <td>Remote host</td>
+    <td>%h</td>
+    <td>$remote_addr</td>
+  </tr>
+  <tr>
+    <td>forwardedfor</td>
+    <td>X-Forwarded-For header</td>
+    <td>%{X-Forwarded-For}i</td>
+    <td>$http_x_forwarded_for</td>
+  </tr>
+  <tr>
+    <td>req</td>
+    <td>First line of request</td>
+    <td>%r</td>
+    <td>$request</td>
+  </tr>
+  <tr>
+    <td>status</td>
+    <td>Status code</td>
+    <td>%>s</td>
+    <td>$status</td>
+  </tr>
+  <tr>
+    <td>size</td>
+    <td>Size of response in bytes, excluding HTTP headers.</td>
+    <td>%b</td>
+    <td>$body_bytes_sent</td>
+  </tr>
+  <tr>
+    <td>requestsize</td>
+    <td>Bytes received, including request and headers.</td>
+    <td>%I (mod_log_io required)</td>
+    <td>$request_length</td>
+  </tr>
+  <tr>
+    <td>referer</td>
+    <td>Referer header</td>
+    <td>%{Referer}i</td>
+    <td>$http_referer</td>
+  </tr>
+  <tr>
+    <td>ua</td>
+    <td>User-Agent header</td>
+    <td>%{User-agent}i</td>
+    <td>$http_user_agent</td>
+  </tr>
+  <tr>
+    <td>vhost</td>
+    <td>Host header</td>
+    <td>%{Host}i</td>
+    <td>$host</td>
+  </tr>
+  <tr>
+    <td>taken</td>
+    <td>The time taken to serve the request, in microseconds</td>
+    <td>%D</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>taken_sec</td>
+    <td>The time taken to serve the request, in seconds</td>
+    <td>%T</td>
+    <td>$request_time</td>
+  </tr>
+  <tr>
+    <td>cache</td>
+    <td>X-Cache header</td>
+    <td>%{X-Cache}o</td>
+    <td>$upstream_http_cache</td>
+  </tr>
+  <tr>
+    <td>runtime</td>
+    <td>Running time to render pages on application servers</td>
+    <td>%{X-Runtime}o</td>
+    <td>$upstream_http_runtime</td>
+  </tr>
+</table>  
+
+<p>A LogFormat example for Apache mod_log_config.</p>
+
+<pre><code>LogFormat "time:%t\tforwardedfor:%{X-Forwarded-For}i\thost:%h\treq:%r\tstatus:%>s\tsize:%b\treferer:%{Referer}i\tua:%{User-Agent}i\ttaken:%D\tcache:%{X-Cache}o\truntime:%{X-Runtime}o\tvhost:%{Host}i" ltsv
+</code></pre>
+
+<p>A log_format example for nginx.</p>
+
+<pre><code>log_format ltsv "time:$time_local\thost:$remote_addr\tforwardedfor:$http_x_forwarded_for\treq:$request\tstatus:$status\tsize:$body_bytes_sent\treferer:$http_referer\tua:$http_user_agent\ttaken_sec:$request_time\tcache:$upstream_http_x_cache\truntime:$upstream_http_x_runtime\tvhost:$host";
+</code></pre>
+
 
 <h2>Supported Tools</h2>
 
@@ -107,6 +221,16 @@ The configuration is like this:</p>
 </ul>
 </li>
 </ul>
+
+<h3>python-ltsv</h3>
+<ul>
+<li>Parser implementation in Python
+<ul>
+<li><a href="https://github.com/hekyou/python-ltsv">https://github.com/hekyou/python-ltsv</a></li>
+</ul>
+</li>
+</ul>
+
       </section>
     </div>
 
