@@ -83,7 +83,7 @@ unique labels in no particular order.</p>
 <pre><code>#!/usr/bin/env ruby
 
 while gets
-  record = Hash[$_.split("\t").map{|p| p.split(":", 2)}]
+  record = Hash[$_.split("\t").map{|f| f.split(":", 2)}]
   p record
 end</code></pre>
 
