@@ -78,6 +78,19 @@ unique labels in no particular order.</p>
 
 <pre><code>host:127.0.0.1&lt;TAB&gt;ident:-&lt;TAB&gt;user:frank&lt;TAB&gt;time:[10/Oct/2000:13:55:36 -0700]&lt;TAB&gt;req:GET /apache_pb.gif HTTP/1.0&lt;TAB&gt;status:200&lt;TAB&gt;size:2326&lt;TAB&gt;referer:http://www.example.com/start.html&lt;TAB&gt;ua:Mozilla/4.08 [en] (Win98; I ;Nav)</code></pre>
 
+<p>Here is a simple LTSV parser:</p>
+
+<pre><code>#!/usr/bin/env ruby
+
+while gets
+  record = Hash[$_.split("\t").map{|p| p.split(":", 2)}]
+  p record
+end</code></pre>
+
+<p>With this parser, you will get the hash like:</p>
+
+<pre><code>{"host"=>"127.0.0.1", "ident"=>"-", "user"=>"frank", "time"=>"[10/Oct/2000:13:55:36 -0700]", "req"=>"GET /apache_pb.gif HTTP/1.0", "status"=>"200", "size"=>"2326", "referer"=>"http://www.example.com/start.html", "ua"=>"Mozilla/4.08 [en] (Win98; I ;Nav)\n"}</code></pre>
+
 <h2>Definition</h2>
 
 <pre><code>;; ABNF &lt;https://tools.ietf.org/html/rfc5234&gt;
