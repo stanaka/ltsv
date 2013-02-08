@@ -50,14 +50,33 @@
 <p>Labeled Tab-separated Values (LTSV) format is a variant of
 Tab-separated Values (TSV). Each record in a LTSV file is represented as
 a single line. Each field is separated by TAB and has a label and a
-value. The label and the value have been separated by ':'.</p>
+value. The label and the value have been separated by ':'.
+With the LTSV format, you can parse each line by spliting with TAB
+(like original TSV format) easily, and extend any fields with
+unique labels in no particular order.</p>
 
 <h2>Example</h2>
 
-<p>The log line of LTSV is like this:</p>
+<p>The LTSV format originally focuses on access logs of web servers, so I'll show an access log of traditional Combined Log Format and the same log of LTSV format version as examples.
 
-<pre><code>time:28/Feb/2013:12:00:00 +0900&lt;TAB&gt;host:192.168.0.1&lt;TAB&gt;req:GET /list HTTP/1.1&lt;TAB&gt;status:200
+<p>The configuration of traditional Combined Log Format on Apache is:</p>
+
+<pre><code>LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" combined
 </code></pre>
+
+<p>and access log will look like: (ref. <a href="http://httpd.apache.org/docs/2.2/logs.html">http://httpd.apache.org/docs/2.2/logs.html</a>)</p>
+
+<pre><code>127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326 "http://www.example.com/start.html" "Mozilla/4.08 [en] (Win98; I ;Nav)"</code></pre>
+
+<p>The configuration of LTSV format with the same infomation will be:</p>
+
+
+<pre><code>LogFormat "host:%h\tident:%l\tuser:%u\ttime:%t\treq:%r\tstatus:%>s\tsize:%b\treferer:\%{Referer}i\tua:%{User-Agent}i" combined_ltsv
+</code></pre>
+
+<p>then the access log will be like:</p>
+
+<pre><code>host:127.0.0.1&lt;TAB&gt;ident:-&lt;TAB&gt;user:frank&lt;TAB&gt;time:[10/Oct/2000:13:55:36 -0700]&lt;TAB&gt;req:GET /apache_pb.gif HTTP/1.0&lt;TAB&gt;status:200&lt;TAB&gt;size:2326&lt;TAB&gt;referer:http://www.example.com/start.html&lt;TAB&gt;ua:Mozilla/4.08 [en] (Win98; I ;Nav)</code></pre>
 
 <h2>Definition</h2>
 
@@ -107,6 +126,18 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
     <td>X-Forwarded-For header</td>
     <td>%{X-Forwarded-For}i</td>
     <td>$http_x_forwarded_for</td>
+  </tr>
+  <tr>
+    <td>ident</td>
+    <td>Remote logname</td>
+    <td>%l</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>user</td>
+    <td>Remote user</td>
+    <td>%u</td>
+    <td>$remote_user</td>
   </tr>
   <tr>
     <td>req</td>
@@ -183,7 +214,12 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
 
 <p>A log_format example for nginx.</p>
 
-<pre><code>log_format ltsv "time:$time_local\thost:$remote_addr\tforwardedfor:$http_x_forwarded_for\treq:$request\tstatus:$status\tsize:$body_bytes_sent\treferer:$http_referer\tua:$http_user_agent\ttaken_sec:$request_time\tcache:$upstream_http_x_cache\truntime:$upstream_http_x_runtime\tvhost:$host";
+<pre><code>log_format ltsv "time:$time_local\thost:$remote_addr"
+                "\tforwardedfor:$http_x_forwarded_for\treq:$request"
+                "\tstatus:$status\tsize:$body_bytes_sent\treferer:$http_referer"
+                "\tua:$http_user_agent\ttaken_sec:$request_time"
+                "\tcache:$upstream_http_x_cache\truntime:$upstream_http_x_runtime
+                "\tvhost:$host";
 </code></pre>
 
 
