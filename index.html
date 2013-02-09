@@ -159,6 +159,24 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
     <td>$request</td>
   </tr>
   <tr>
+    <td>method</td>
+    <td>Request method</td>
+    <td>%m</td>
+    <td>$request_method</td>
+  </tr>
+  <tr>
+    <td>uri</td>
+    <td>Request URI</td>
+    <td>%U%q</td>
+    <td>$request_uri</td>
+  </tr>
+  <tr>
+    <td>protocol</td>
+    <td>Requested Protocol (usually "HTTP/1.0" or "HTTP/1.1")</td>
+    <td>%H</td>
+    <td>$server_protocol</td>
+  </tr>
+  <tr>
     <td>status</td>
     <td>Status code</td>
     <td>%>s</td>
@@ -171,7 +189,7 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
     <td>$body_bytes_sent</td>
   </tr>
   <tr>
-    <td>requestsize</td>
+    <td>reqsize</td>
     <td>Bytes received, including request and headers.</td>
     <td>%I (mod_log_io required)</td>
     <td>$request_length</td>
@@ -195,13 +213,13 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
     <td>$host</td>
   </tr>
   <tr>
-    <td>taken</td>
+    <td>reqtime_microsec</td>
     <td>The time taken to serve the request, in microseconds</td>
     <td>%D</td>
     <td></td>
   </tr>
   <tr>
-    <td>taken_sec</td>
+    <td>reqtime</td>
     <td>The time taken to serve the request, in seconds</td>
     <td>%T</td>
     <td>$request_time</td>
@@ -210,19 +228,25 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
     <td>cache</td>
     <td>X-Cache header</td>
     <td>%{X-Cache}o</td>
-    <td>$upstream_http_cache</td>
+    <td>$upstream_http_x_cache</td>
   </tr>
   <tr>
     <td>runtime</td>
-    <td>Running time to render pages on application servers</td>
+    <td>X-Runtime header</td>
     <td>%{X-Runtime}o</td>
-    <td>$upstream_http_runtime</td>
+    <td>$upstream_http_x_runtime</td>
+  </tr>
+  <tr>
+    <td>apptime</td>
+    <td>Response time from the upstream server</td>
+    <td>-</td>
+    <td>$upstream_response_time</td>
   </tr>
 </table>  
 
 <p>A LogFormat example for Apache mod_log_config.</p>
 
-<pre><code>LogFormat "time:%t\tforwardedfor:%{X-Forwarded-For}i\thost:%h\treq:%r\tstatus:%>s\tsize:%b\treferer:%{Referer}i\tua:%{User-Agent}i\ttaken:%D\tcache:%{X-Cache}o\truntime:%{X-Runtime}o\tvhost:%{Host}i" ltsv
+<pre><code>LogFormat "time:%t\tforwardedfor:%{X-Forwarded-For}i\thost:%h\treq:%r\tstatus:%>s\tsize:%b\treferer:%{Referer}i\tua:%{User-Agent}i\treqtime_microsec:%D\tcache:%{X-Cache}o\truntime:%{X-Runtime}o\tvhost:%{Host}i" ltsv
 </code></pre>
 
 <p>A log_format example for nginx.</p>
@@ -230,7 +254,7 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
 <pre><code>log_format ltsv "time:$time_local\thost:$remote_addr"
                 "\tforwardedfor:$http_x_forwarded_for\treq:$request"
                 "\tstatus:$status\tsize:$body_bytes_sent\treferer:$http_referer"
-                "\tua:$http_user_agent\ttaken_sec:$request_time"
+                "\tua:$http_user_agent\treqtime:$request_time"
                 "\tcache:$upstream_http_x_cache\truntime:$upstream_http_x_runtime"
                 "\tvhost:$host";
 </code></pre>
