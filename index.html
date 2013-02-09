@@ -48,7 +48,7 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <h1 id="project_title">Labeled Tab-separated Values</h1>
+          <h1 id="project_title"><a href="/">Labeled Tab-separated Values</a></h1>
           <h2 id="project_tagline"></h2>
         </header>
     </div>
@@ -66,6 +66,10 @@ value. The label and the value have been separated by ':'.
 With the LTSV format, you can parse each line by spliting with TAB
 (like original TSV format) easily, and extend any fields with
 unique labels in no particular order.</p>
+
+<h2>FAQ</h2>
+
+<a href="/faq.html">Follow the link</a>.
 
 <h2>Example</h2>
 
@@ -483,168 +487,6 @@ The configuration is like this:</p>
 </ul>
 </li>
 </ul>
-
-<h2>FAQ</h2>
-This FAQ is originally written in <a href="http://d.hatena.ne.jp/naoya/20130209/1360381374">Japanese</a>
-
-<h3>What is LTSV?</h3>
-<p>It is a format of text, called "Labeled Tab-Separated Values". CSV, TSV, or JSON are the same as this. LTSV is useful for "logs", especially access logs of httpd.</p>
-
-<p>Its spec is http://ltsv.org. Just updating now.</p>
-
-<p>LTSV is neither more nor less than a format of logs.</p>
-
-<h3>Is LTSV just values which are named and separated by tab?</h3>
-<p>Yes, it is.</p>
-
-<pre>
-127.0.0.1 - frank [10/Oct/2000:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326 "http://www.example.com/start.html" "Mozilla/4.08 [en] (Win98; I ;Nav)"
-</pre>
-
-<p>This log should be like:</p>
-
-<pre>
-host:127.0.0.1&lt;TAB&gt;ident:-&lt;TAB&gt;user:frank&lt;TAB&gt;time:[10/Oct/2000:13:55:36 -0700]&lt;TAB&gt;req:GET /apache_pb.gif HTTP/1.0&lt;TAB&gt;status:200&lt;TAB&gt;size:2326&lt;TAB&gt;referer:http://www.example.com/start.html&lt;TAB&gt;ua:Mozilla/4.08 [en] (Win98; I ;Nav)
-</pre>
-
-<h3>Why is just a format of logs talked a lot now?</h3>
-<p>Because it is a simple solution, like an egg of Columbus. Although the combined format used by access logs of apache is unexpectedly difficult to parse, and fragile against to add a new value, everyone use it by a historical reason. LTSV can solve these problems by a very small changing of format.</p>
-
-<p>Recently the importance of log analysis is increasing, so you often add to logs a custom values not contained by a standard format, or you are sometimes forced to output logs which are frequently ordered to change its format. LTSV is suitable for these cases, too.</p>
-
-<h3>What is the good points of LTSV?</h3>
-<ul>
-<li>Easy to parse. For example, <pre>Hash[gets.split("\t").map{|f| f.split(":", 2)}]</pre> in ruby.</li>
-<li>Don't need any special parser.</li>
-<li>Don't need any special formatter to output logs. You can configure it with standard config files of apache or nginx.</li>
-<li>Open against adding a new field. In short, there is no influence on any existing programs when you add a new column.</li>
-<li>Easy to cook after parsing because values are named.</li>
-<li>Line-oriented, so it is easy to combine with other programs.</li>
-
-<h3>What does it mean "open against expansion"?</h3>
-<p>Lets's suppose that you have following LTSV logs,</p>
-
-<pre>
-host:127.0.0.1&lt;TAB&gt;ident:-&lt;TAB&gt;user:frank&lt;TAB&gt;
-</pre>
-
-<p>and suppose you have hundreds scripts parsing and processing these logs, like</p>
-
-<pre>
-#!/usr/bin/env ruby
-while gets
-  record = Hash[$_.split("\t").map{|f| f.split(":", 2)}]
-  # do something to record
-end
-</pre>
-
-<p>Oneday, you find that there isn't a time field so you want to add it to logs.</p>
-
-<pre>
-time:[10/Oct/2000:13:55:36 -0700]&lt;TAB&gt;host:127.0.0.1&lt;TAB&gt;ident:-&lt;TAB&gt;user:frank&lt;TAB&gt;
-</pre>
-
-<p>Then, will these hundreds scripts break and become not working? No. If you use the combined format and parse logs with the regular expression, these scripts may not work.</p>
-
-<p>You can also add the time field into the head, the tail, or anywhere. If the scripts are wrote considering that the record hash can be added a new value, they can handle the time field right after you add it to logs.</p>
-
-<h3>What is the weak points of LTSV?</h3>
-<p>Comparing with the combined format:</p>
-
-<ul>
-<li>A bit worse to read by human
-  <ul>
-  <li>apart from whether the combined format is good for reading...</li>
-  </ul>
-</li>
-<li>Increase the size because of the amount of names of fields.</li>
-</ul>
-
-<p>That's all. All weak points can be solved or you don't need to mind them. (see below)</p>
-
-<h3>JSON is structured and looks better</h3>
-<p>From the point of view of naming the data, JSON or MessagePack are better, but parsing them is not easy. You need some ingenuity to output a special format from an existing software, like apache or nginx.</p>
-
-<p>The selling point of LTSV is the balance of hassle free transition from the non-expandable format of logs.</p>
-
-<h3>Doesn't it have to have "escaping" in its spec?</h3>
-<p>The spec of LTSV are just only not using ":" in the keys and separating by tab. There are some reasons why escaping is not in the spec.</p>
-
-<ul>
-<li>Strictly considering escaping makes parsing difficult.</li>
-<li>Aren't there cases when tabs appear in the strings like User-Agent? No, there aren't, because of vulnerability management.</li>
-</ul>
-
-<p>In ltsv.org, there are many implementation of LTSV for various languages, but you don't have to use them. You can parse LTSV format with a simple process like this.</p>
-
-<pre>
-#!/usr/bin/env ruby
-while gets
-  record = Hash[$_.split("\t").map{|f| f.split(":", 2)}]
-  p record
-end
-</pre>
-
-<p>There is also a room of discussion of an external spec, like "strict-LTSV".</p>
-
-<h3>Can I use it for something besides access logs?</h3>
-<p>Of course. LTSV is just a format like CSV, TSV, and JSON, so you can use it everywhere.</p>
-
-<h3>Can I choose any name for labels as I please?</h3>
-<p>Yes, you can.</p>
-
-<p>It is also nice to adopt the "Recommendations for labeling" on ltsv.org. You don't need to mind and it is convenient for doing anything if the names are the same.</p>
-
-<h3>Output becomes hard to read.</h3>
-<p>You should use a kind of filter like ltsview. Implementation is very easy.</p>
-
-<p>You can also tail logs formatted with the filter, like this.</p>
-
-<pre>
-$ tail -f access_log | ltsview
-</pre>
-
-<p>If you want to watch logs with the combined format, you can develop a filter converting from LTSV to combined.</p>
-
-<p>The easiness of implementing a filter is a result of the spec of LTSV, based on the idea that is line-oriented, self-explanatory, and open for expansion.</p>
-
-<h3>Is a bit larger size of logs all right?</h3>
-<p>It is my opinion without consensus, but</p>
-
-<ul>
-<li>It is not a big deal because the size of strings of requested URI, User-Agent, or referer is much larger than the size of labels.</li>
-<li>The large scale services in which they can't ignore a little increasing of the size of logs have often other solution for analyzing and storing the logs. 
-  <ul>
-  <li>Analyze logs with MapReduce (Hadoop or Amazon EMR), or store logs to DataWareHouse, etc.</li>
-  <li>The increase of the size by labels is offset by storing logs to database through fluentd or something.</li>
-  </ul>
-</li>
-</ul>
-
-<p>At least Hatane uses LTSV for more than three years, so there is no problem in the same scale as Hatena.</p>
-
-<h3>Is LTSV a spec for only fluentd?</h3>
-<p>No.</p>
-
-<p>LTSV is just a format, not related to any other softwares. The reason why LTSV is talked together with fluentd is that fluentd is often used to process access logs. LTSV makes the fluentd configuration simple and DRY, so a troublesome problem (worse especially in long-term system) for administrators is solved by LTSV.</p>
-
-<h3>I want to convert existing combined logs to LTSV.</h3>
-<p>There is a perl script for that.</p>
-
-<p>You can use it only perl without any modules. It is a good point of LTSV that you can process logs without any special implementation.</p>
-
-<h3>Who is the judge of the spec?</h3>
-<p>There is no rule like someone is the judge. Everyone who is interested in LTSV works as he or she likes. I also have no rights of LTSV.</p>
-
-<p>@stanaka has the domain of ltsv.org and he is the first originator, so something works with him. But the repository of ltsv.org is public and everyone can contribute it.</p>
-
-<p>It is the internet!</p>
-
-<h3>How to follow the movement?</h3>
-<p>It is better to search twitter with ltsv.</p>
-
-<h3>Is this movement only in Japan?</h3>
-<p>Yes, or no. We want to spread it globally.</p>
 
       </section>
     </div>
