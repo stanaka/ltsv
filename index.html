@@ -1,19 +1,33 @@
 <!DOCTYPE html>
 <html>
-
-  <head>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# 
+		website: http://ogp.me/ns/website#">
     <meta charset='utf-8' />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Labeled Tab-separated Values (LTSV) : " />
+    <meta name="description" content="Labeled Tab-separated Values (LTSV) format is a variant of Tab-separated Values (TSV). Each record in a LTSV file is represented as a single line. Each field is separated by TAB and has a label and a value. The label and the value have been separated by ':'. With the LTSV format, you can parse each line by spliting with TAB (like original TSV format) easily, and extend any fields with unique labels in no particular order.">
 
-<!-- facebook open graph tags -->
-<meta property="og:title" content="Labeled Tab-separated Values" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://lstv.org/" />
-<meta property="og:image" content="" />
-<meta property="og:site_name" content="Labeled Tab-separated Values" />
-<meta property="fb:admins" content="533213899" />
-<!-- END facebook open graph tags -->
+    <!-- only for top of site -->
+    <meta property="og:type" content="website">
+    <!-- only for top of site -->
+
+    <meta property="og:url" content="http://ltsv.org/">
+    <meta property="og:site_name" content="ltsv.org">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Labeled Tab-separated Values">
+    <meta property="og:description" content="Labeled Tab-separated Values (LTSV) format is a variant of Tab-separated Values (TSV). Each record in a LTSV file is represented as a single line. Each field is separated by TAB and has a label and a value. The label and the value have been separated by ':'. With the LTSV format, you can parse each line by spliting with TAB (like original TSV format) easily, and extend any fields with unique labels in no particular order.">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="ltsv.org">
+    <meta name="twitter:creator" content="@stanaka">
+    <meta name="twitter:url" content="http://ltsv.org/">
+    <meta name="twitter:title" content="Labeled Tab-separated Values">
+    <meta name="twitter:description" content="Labeled Tab-separated Values (LTSV) is a variant of Tab-separated Values (TSV). .. With LTSV, you can parse lines by spliting with TAB (like TSV) easily, and extend any fields with unique labels in no particular order.">
+
+    <!-- <meta property="og:image" content=""> -->
+    <!-- <meta name="twitter:image" content=""> -->
+
+    <meta property="fb:admins" content="533213899">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
