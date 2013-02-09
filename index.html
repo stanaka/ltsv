@@ -263,11 +263,17 @@ fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
 
 <p>A log_format example for nginx.</p>
 
-<pre><code>log_format ltsv "time:$time_local\thost:$remote_addr"
-                "\tforwardedfor:$http_x_forwarded_for\treq:$request"
-                "\tstatus:$status\tsize:$body_bytes_sent\treferer:$http_referer"
-                "\tua:$http_user_agent\treqtime:$request_time"
-                "\tcache:$upstream_http_x_cache\truntime:$upstream_http_x_runtime"
+<pre><code>log_format ltsv "time:$time_local"
+                "\thost:$remote_addr"
+                "\tforwardedfor:$http_x_forwarded_for"
+                "\treq:$request"
+                "\tstatus:$status"
+                "\tsize:$body_bytes_sent"
+                "\treferer:$http_referer"
+                "\tua:$http_user_agent"
+                "\treqtime:$request_time"
+                "\tcache:$upstream_http_x_cache"
+                "\truntime:$upstream_http_x_runtime"
                 "\tvhost:$host";
 </code></pre>
 
