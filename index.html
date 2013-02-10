@@ -107,20 +107,22 @@ end</code></pre>
 
 <pre><code>{"host"=>"127.0.0.1", "ident"=>"-", "user"=>"frank", "time"=>"[10/Oct/2000:13:55:36 -0700]", "req"=>"GET /apache_pb.gif HTTP/1.0", "status"=>"200", "size"=>"2326", "referer"=>"http://www.example.com/start.html", "ua"=>"Mozilla/4.08 [en] (Win98; I ;Nav)\n"}</code></pre>
 
-<h2>Definition</h2>
+<h2 id=abnf>Definition</h2>
 
-<pre><code>;; ABNF &lt;https://tools.ietf.org/html/rfc5234&gt;
+<p>A <dfn id=LTSV-file>LTSV file</dfn> must be a byte sequence which
+matches the <code>ltsv</code> production in the following <a
+href="https://tools.ietf.org/html/rfc5234">ABNF</a>:
 
-ltsv = *(record NL) [record]
-record = [field *(TAB field)]
-field = label ":" field-value
-label = 1*lbyte
-field-value = *fbyte
+<pre><code><dfn id=abnf-ltsv>ltsv</dfn> = *(record NL) [record]
+<dfn id=abnf-record>record</dfn> = [field *(TAB field)]
+<dfn id=abnf-field>field</dfn> = label ":" field-value
+<dfn id=abnf-label>label</dfn> = 1*lbyte
+<dfn id=abnf-field-value>field-value</dfn> = *fbyte
 
-TAB = %x09
-NL = [%x0D] %x0A
-lbyte = %x30-39 / %x41-5A / %x61-7A / "_" / "." / "-" ;; [0-9A-Za-z_.-]
-fbyte = %x01-08 / %x0B / %x0C / %x0E-FF
+<dfn id=abnf-TAB>TAB</dfn> = %x09
+<dfn id=abnf-NL>NL</dfn> = [%x0D] %x0A
+<dfn id=abnf-lbyte>lbyte</dfn> = %x30-39 / %x41-5A / %x61-7A / "_" / "." / "-" ;; [0-9A-Za-z_.-]
+<dfn id=abnf-fbyte>fbyte</dfn> = %x01-08 / %x0B / %x0C / %x0E-FF
 </code></pre>
 
 <h2>Recommendations for labeling</h2>
