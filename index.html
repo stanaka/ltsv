@@ -1,62 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#
-		website: http://ogp.me/ns/website#">
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Labeled Tab-separated Values (LTSV) format is a variant of Tab-separated Values (TSV). Each record in a LTSV file is represented as a single line. Each field is separated by TAB and has a label and a value. The label and the value have been separated by ':'. With the LTSV format, you can parse each line by spliting with TAB (like original TSV format) easily, and extend any fields with unique labels in no particular order.">
-
-    <!-- only for top of site -->
-    <meta property="og:type" content="website">
-    <!-- only for top of site -->
-
-    <meta property="og:url" content="http://ltsv.org/">
-    <meta property="og:site_name" content="ltsv.org">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="Labeled Tab-separated Values">
-    <meta property="og:description" content="Labeled Tab-separated Values (LTSV) format is a variant of Tab-separated Values (TSV). Each record in a LTSV file is represented as a single line. Each field is separated by TAB and has a label and a value. The label and the value have been separated by ':'. With the LTSV format, you can parse each line by spliting with TAB (like original TSV format) easily, and extend any fields with unique labels in no particular order.">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:creator" content="@stanaka">
-    <meta name="twitter:url" content="http://ltsv.org/">
-    <meta name="twitter:title" content="Labeled Tab-separated Values">
-    <meta name="twitter:description" content="Labeled Tab-separated Values (LTSV) is a variant of Tab-separated Values (TSV). .. With LTSV, you can parse lines by spliting with TAB (like TSV) easily, and extend any fields with unique labels in no particular order.">
-
-    <meta property="og:image" content="http://ltsv.org/images/ltsv_log.png">
-    <meta name="twitter:image" content="http://ltsv.org/images/ltsv_log.png">
-
-    <meta property="fb:admins" content="533213899">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Labeled Tab-separated Values (LTSV)</title>
-  </head>
-
-  <body>
-
-<!-- for Facebook Like button -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=6933260618";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<!-- END for Facebook Like button -->
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <h1 id="project_title"><a href="/">Labeled Tab-separated Values</a></h1>
-          <h2 id="project_tagline"></h2>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-
+---
+layout: default
+title: Labeled Tab-separated Values (LTSV)
+og_url: http://ltsv.org/
+twitter_description: Labeled Tab-separated Values (LTSV) is a variant of Tab-separated Values (TSV). .. With LTSV, you can parse lines by spliting with TAB (like TSV) easily, and extend any fields with unique labels in no particular order.
+description: Labeled Tab-separated Values (LTSV) format is a variant of Tab-separated Values (TSV). Each record in a LTSV file is represented as a single line. Each field is separated by TAB and has a label and a value. The label and the value have been separated by ':'. With the LTSV format, you can parse each line by spliting with TAB (like original TSV format) easily, and extend any fields with unique labels in no particular order.
+---
 <h2>Description</h2>
 
 <p>Labeled Tab-separated Values (LTSV) format is a variant of
@@ -530,62 +478,3 @@ The configuration is like this:</p>
 </ul>
 </li>
 </ul>
-
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">maintained by Shinji Tanaka &lt;shinji.tanaka+ltsv@gmail.com&gt;</p>
-
-<!-- for tweet button  -->
-<div class="tweet">
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://ltsv.org/" data-hashtags="ltsv">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
-<!-- END for tweet button  -->
-
-<!-- for facebook like button  -->
-<div class="fb-like" data-href="http://lstv.org/" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-<!-- END for facebook like button  -->
-
-<!-- for +1 button  -->
-<!-- Place this tag where you want the +1 button to render. -->
-<div class="plusone">
-<div class="g-plusone" data-size="medium" data-href="http://ltsv.org/"></div>
-</div>
-
-<!-- Place this tag after the last +1 button tag. -->
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-<!-- END for +1 button  -->
-
-<!-- for Hatena Bookmark button  -->
-<div class="hatenabookmark">
-<a href="http://b.hatena.ne.jp/entry/http://ltsv.org/" class="hatena-bookmark-button" data-hatena-bookmark-title="Labeled Tab-separated Values" data-hatena-bookmark-layout="simple-balloon" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-</div>
-<!-- END for Hatena Bookmark button  -->
-
-      </footer>
-    </div>
-
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-38329802-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-  </body>
-</html>
