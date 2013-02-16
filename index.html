@@ -263,6 +263,15 @@ The configuration is like this:</p>
 </li>
 </ul>
 
+<h3>ltsview</h3>
+<ul>
+<li>A viewer for LTSV. This tool includes the LTSV parser.
+<ul>
+<li><a href="https://metacpan.org/module/Text::LTSV">https://metacpan.org/module/Text::LTSV</a></li>
+</ul>
+</li>
+</ul>
+
 <h3>Plack::Middleware::AxsLog</h3>
 <ul>
 <li>Plack::Middleware::AxsLog ( Fixed format but Fast AccessLog Middleware ) supports LTSV.
@@ -281,12 +290,21 @@ The configuration is like this:</p>
 </li>
 </ul>
 
+<h3>MCombined2LTSV.java</h3>
+<ul>
+<li>converts (common|combined) log to LTSV. Implemented in Java (ref. <a href="http://kanatoko.wordpress.com/2013/02/14/apache_log_to_ltsv_with_java_mcp/">author's blog entry</a> in Japanese.)
+<ul>
+<li><a href="https://github.com/Kanatoko/MCP/blob/master/src/net/jumperz/io/multicore/example/MCombined2LTSV.java">https://github.com/Kanatoko/MCP/blob/master/src/net/jumperz/io/multicore/example/MCombined2LTSV.java</a></li>
+</ul>
+</li>
+</ul>
+
 <h3>Parser Implementations</h3>
 
 <h4>Perl</h4>
 
 <ul>
-<li>Text::LTSV
+<li>Text::LTSV (including ltsview, a viewer for LTSV)
 <ul>
 <li><a href="https://metacpan.org/module/Text::LTSV">https://metacpan.org/module/Text::LTSV</a></li>
 </ul>
