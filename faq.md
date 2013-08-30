@@ -129,7 +129,7 @@ It is my opinion without consensus, but
   * Analyze logs with MapReduce (Hadoop or Amazon EMR), or store logs to DataWareHouse, etc.
   * The increase of the size by labels is offset by storing logs to database through fluentd or something.
 
-At least Hatane uses LTSV for more than three years, so there is no problem in the same scale as Hatena.
+At least Hatena uses LTSV for more than three years, so there is no problem in the same scale as Hatena.
 
 ### Is LTSV a spec for only fluentd?
 No.
