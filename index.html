@@ -151,7 +151,7 @@ href="https://tools.ietf.org/html/rfc5234">ABNF</a>:
   <tr>
     <td>size</td>
     <td>Size of response in bytes, excluding HTTP headers.</td>
-    <td>%b</td>
+    <td>%B (or '%b' for compatibility with combined format)</td>
     <td>$body_bytes_sent</td>
   </tr>
   <tr>
@@ -212,7 +212,7 @@ href="https://tools.ietf.org/html/rfc5234">ABNF</a>:
 
 <p>A LogFormat example for Apache mod_log_config.</p>
 
-<pre><code>LogFormat "time:%t\tforwardedfor:%{X-Forwarded-For}i\thost:%h\treq:%r\tstatus:%>s\tsize:%b\treferer:%{Referer}i\tua:%{User-Agent}i\treqtime_microsec:%D\tcache:%{X-Cache}o\truntime:%{X-Runtime}o\tvhost:%{Host}i" ltsv
+<pre><code>LogFormat "time:%t\tforwardedfor:%{X-Forwarded-For}i\thost:%h\treq:%r\tstatus:%>s\tsize:%B\treferer:%{Referer}i\tua:%{User-Agent}i\treqtime_microsec:%D\tcache:%{X-Cache}o\truntime:%{X-Runtime}o\tvhost:%{Host}i" ltsv
 </code></pre>
 
 <p>A log_format example for nginx.</p>
